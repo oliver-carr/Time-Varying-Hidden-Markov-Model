@@ -1,4 +1,4 @@
-function [Acc_Time,Total_Acc,Acc,HR_Time,hr]=load_example_data()
+function [Acc_Time,Total_Acc,Acc]=load_example_data()
 
 % Method of measuring desynchronization of diurnal rhythms and quantification 
 % of circadian/diurnal variability
@@ -42,7 +42,6 @@ function [Acc_Time,Total_Acc,Acc,HR_Time,hr]=load_example_data()
 % Load the example data
 % Total Acceleration - Acc
 % Vertical Acceleration - VAcc
-% Heart Rate - HR
 fid = fopen('Acceleration Example.csv');
 A = textscan(fid,'%s %u %f %f %f %f',10022,'Delimiter',',');
 fclose(fid);
@@ -51,13 +50,3 @@ Acc_Time=datenum(temp_AccT(:,1:19));
 
 Total_Acc=sqrt((A{1,3}).^2+(A{1,4}).^2+(A{1,5}).^2);
 Acc=[(A{1,3}),(A{1,4}),(A{1,5})];
-
-fid = fopen('Heart Rate Example.csv');
-HR = textscan(fid,'%s %f',1515,'Delimiter',',');
-fclose(fid);
-temp_HRT=cell2mat(HR{1,1});
-hr=(HR{1,2});
-HR_Time=datenum(temp_HRT(:,1:19));
-[HR_Time,Ind] = sort(HR_Time,'ascend');
-hr=hr(Ind);
-[hr]=clean_example_hr(hr);

@@ -3,23 +3,25 @@ mainpath = (strrep(which(mfilename),[mfilename '.m'],''));
 addpath(genpath(mainpath)) % add subfunctions folder to path
 
 % Load the example file
-[Acc_Time,Total_Acc,Acc,HR_Time,HR]=load_example_data();
+[Acc_Time,Total_Acc,Acc]=load_example_data();
 
 % Define the data to be used in the HMM
-Example=1; %Select Example to run
-S=2; %Number of hidden states
+Example=2; %Select Example to run
 
-%Example 1 - Transformed total acceleration to find 3 hidden states of
-%activity (inactive, mildy active, highly active)
 if Example==1
+    %Example 1 - Transformed total acceleration to find 3 hidden states of
+    %activity (inactive, mildy active, highly active)
     time=Acc_Time(2:end);
     data=log(abs(diff(Total_Acc)));
+    S=2; %Number of hidden states
     
+elseif Example==2
     %Example 2 - Three-dimensional activity to find 3 hidden states of
     %activity (inactive, mildy active, highly active)
-elseif Example ==2
     time=Acc_Time;
     data=Acc;
+    S=2; %Number of hidden states
+   
 end
 
 % Remove any -Inf values from log(0) and replce with minimum + noise
@@ -50,7 +52,7 @@ ylabel('Data','fontsize',14)
 subplot(5,1,3)
 for pl=1:size(data,2)
     hold on
-    histogram(data(:,pl),500,'Normalization','pdf')
+    histogram(data(:,pl),50,'Normalization','pdf')
 end
 ylabel('Distribution','fontsize',14)
 
