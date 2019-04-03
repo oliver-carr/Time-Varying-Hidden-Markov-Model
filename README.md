@@ -53,7 +53,7 @@ Viterbi sequence of hidden states with observation data, and the probability of 
 Acceleration data in each of the three orthogonal directions.
 
 ![Probability of states](/images/contStates2.png)
-Probability of the inactive state (blue) and active state (red) at each timepoint using multivariate acceleration observations.
+Probability of the inactive state (red) and active state (blue) at each timepoint using multivariate acceleration observations.
 
 
 
