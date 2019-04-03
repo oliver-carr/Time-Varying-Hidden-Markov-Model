@@ -6,7 +6,7 @@ addpath(genpath(mainpath)) % add subfunctions folder to path
 [Acc_Time,Total_Acc,Acc]=load_example_data();
 
 % Define the data to be used in the HMM
-Example=2; %Select Example to run
+Example=1; %Select Example to run
 
 if Example==1
     %Example 1 - Transformed total acceleration to find 3 hidden states of
@@ -84,7 +84,7 @@ end
 % Plot the state transitions
 plot_state_probabilities(prb,time,data,max_ind,S)
 
-
+set(gcf,'color','w');
 
 
 
