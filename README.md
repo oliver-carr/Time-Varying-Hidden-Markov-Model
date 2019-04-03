@@ -30,6 +30,16 @@ Outputs:
 
 * A - transition matrix of probabilities. N by N matrix of transitions between each state.
 
+Example
+
+```matlab
+ContinuousEmissionHMM.m
+```
+
+* Example 1 - Estimation of sleep/wake (rest/active) from single total acceleration observations (N=2)
+
+
+
 
 
 
