@@ -38,7 +38,7 @@ ContinuousEmissionHMM.m
 
 * Example 1 - Estimation of sleep/wake (rest/active) from single total acceleration observations (N=2)
 
-![Total acceleration data and transformed data (log differences)](/images/contData1.png)
+[Total acceleration data and transformed data (log differences)](/images/contData1.png)
 
 
 
