@@ -6,7 +6,7 @@ addpath(genpath(mainpath)) % add subfunctions folder to path
 [Acc_Time,Total_Acc,Acc]=load_example_data();
 
 % Define the data to be used in the HMM
-Example=1; %Select Example to run
+Example=2; %Select Example to run
 
 if Example==1
     %Example 1 - Transformed total acceleration to find 3 hidden states of
@@ -20,7 +20,7 @@ elseif Example==2
     %activity (inactive, mildy active, highly active)
     time=Acc_Time;
     data=Acc;
-    S=2; %Number of hidden states
+    S=3; %Number of hidden states
    
 end
 
