@@ -3,7 +3,7 @@ function [max_ind,delta,prb]=viterbi_alg(obs,Mu,Cov,Pi,trans,continuous)
 %
 %  Input:
 %       - obs:               Observations (MxT)
-%       - Mu:                Means of the normal distributions for each
+%       - Mu:                Means of the normal distributions for eachs
 %                            observation in each state (MxN)
 %       - Cov:               Covariance of the normal distributions for eachs
 %                            observation in each state (MxMxN)
@@ -14,13 +14,17 @@ function [max_ind,delta,prb]=viterbi_alg(obs,Mu,Cov,Pi,trans,continuous)
 %           
 %   Output:
 %       - max_ind:           Indicies of the states of the most likely sequence
-%       - delta:             Log transformed probability of being in each state       
-%       - prb:               Probability of being in each state
+%       - delta:                    
 % 
+% 
+% 
+% 
+%
+%
 % --
 % Released under the GNU General Public License
 %
-% Copyright (C) 2019  Oliver Carr
+% Copyright (C) 2017  Fernando Andreotti, Oliver Carr
 % University of Oxford, Insitute of Biomedical Engineering, CIBIM Lab - Oxford 2017
 % fernando.andreotti@eng.ox.ac.uk
 %

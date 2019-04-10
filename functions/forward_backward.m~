@@ -1,4 +1,4 @@
-function [Mu,Cov,trans,Pi]=forward_backward(X,N,cyc,tol)
+function [Mu,Cov,trans,Pi]=forward_backward(X,N,cyc)
 % Gaussian Observation Hidden Markov Model
 %
 %  Input:
@@ -19,7 +19,7 @@ function [Mu,Cov,trans,Pi]=forward_backward(X,N,cyc,tol)
 % --
 % Released under the GNU General Public License
 %
-% Copyright (C) 2019  Oliver Carr
+% Copyright (C) 2017  Fernando Andreotti, Oliver Carr
 % University of Oxford, Insitute of Biomedical Engineering, CIBIM Lab - Oxford 2017
 % fernando.andreotti@eng.ox.ac.uk
 %
@@ -50,15 +50,9 @@ LL=[];
 p=length(X(1,:));
 T=length(X(:,1));
 
-if nargin<2
-    error('Not enough input arguments')
-elseif nargin==2
-    cyc=100;
-    tol=0.00001;
-elseif nargin==3
-    tol=0.00001;
-end
-
+if nargin<4   tol=0.00001; end
+if nargin<3   cyc=100; end
+if nargin<2   N=2; end
 
 % Find the initial means and covariance matrices for each of the states
 % Split the observations into evenly size states from smallest to largest
