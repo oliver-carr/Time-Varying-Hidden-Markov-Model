@@ -63,4 +63,4 @@ Three state HMM with three orthogonal acceleration observations. Probability of 
 
 
 
-# Time Varying Hidden Markov Model
+# Example Time Varying Hidden Markov Model (Continuous Emission)
