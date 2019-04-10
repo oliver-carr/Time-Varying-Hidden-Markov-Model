@@ -60,4 +60,4 @@ Probability of the inactive state (yellow), partially active state (red) and act
 
 
 
-### Time Varying Hidden Markov Model
+# Time Varying Hidden Markov Model
