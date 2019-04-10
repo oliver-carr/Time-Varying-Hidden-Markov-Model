@@ -55,6 +55,9 @@ Acceleration data in each of the three orthogonal directions.
 ![Probability of states](/images/contStates2.png)
 Probability of the inactive state (red) and active state (blue) at each timepoint using multivariate acceleration observations.
 
+![Probability of three states](/images/cont3States2.png)
+Probability of the inactive state (yellow), partially active state (red) and active state (blue) at each timepoint using multivariate acceleration observations.
+
 
 
 ### Time Varying Hidden Markov Model
