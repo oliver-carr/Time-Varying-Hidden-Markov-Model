@@ -12,7 +12,7 @@ COMING SOON
 
 COMING SOON
 
-# Continuous Emission Hidden Markov Model
+# Hidden Markov Model (Continuous Emission)
 
 Inputs:
 * X - an M by T matrix of observed continuous data. M is the number of observed variables and T is the total time, observations must be evenly sampled but may contain missing data.
