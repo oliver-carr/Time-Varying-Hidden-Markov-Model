@@ -58,7 +58,7 @@ ylabel('Distribution','fontsize',14)
 
 % Calculate mean, covariance, tranistion matrix and prior using the forward
 % backward algorithm (Baum-Welch)
-[Mu,Cov,A,Pi]=forward_backward(data,S);
+[Mu,Cov,A,Pi]=BaumWelch(data,S);
 
 % Plot the pdfs on the histogram (only for 1D input)
 if size(data,2)==1
