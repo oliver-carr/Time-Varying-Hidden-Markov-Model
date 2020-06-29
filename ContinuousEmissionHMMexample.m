@@ -98,7 +98,7 @@ elseif Example==3
     
     % TVTP Viterbi
     [max_ind,~,delta2,vit_prb]=TVviterbi_alg(data,Mu,Cov,Pi,A);
-    plot_state_probabilities(vit_prb,time,data,max_ind)
+    plot_state_probabilities(vit_prb,time,data,max_ind, S)
     
     % Plot the state transitions
     [vit_time_profile,vit_av_profile]=average_profile(time,vit_prb');
@@ -111,7 +111,7 @@ elseif Example==3
         M=M./sum(M(:,t));
     end
     figure
-    plot_state_probabilities(M,time,data,max_ind)
+    plot_state_probabilities(M,time,data,max_ind, S)
     [vit_time_profile2,vit_av_profile2]=average_profile(time,M');
     plot_state_probabilitiesV2(vit_av_profile2',vit_time_profile2)
     
