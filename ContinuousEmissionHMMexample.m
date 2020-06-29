@@ -9,8 +9,8 @@ addpath(genpath(mainpath)) % add subfunctions folder to path
 Example=2; %Select Example to run
 
 if Example==1
-    %Example 1 - Transformed total acceleration to find 3 hidden states of
-    %activity (inactive, mildy active, highly active)
+    %Example 1 - Transformed total acceleration to find 2 hidden states of
+    %activity (inactive, active)
     time=Acc_Time(2:end);
     data=log(abs(diff(Total_Acc)));
     S=2; %Number of hidden states
@@ -21,7 +21,13 @@ elseif Example==2
     time=Acc_Time;
     data=Acc;
     S=3; %Number of hidden states
-   
+    
+elseif Example==3
+    %Example 3 - Time varying HMM to find two hidden states of activity
+    time=Acc_Time(2:end);
+    data=log(abs(diff(Total_Acc)));
+    S=2; %Number of hidden states
+    
 end
 
 % Remove any -Inf values from log(0) and replce with minimum + noise
@@ -56,41 +62,66 @@ for pl=1:size(data,2)
 end
 ylabel('Distribution','fontsize',14)
 
-% Calculate mean, covariance, tranistion matrix and prior using the forward
-% backward algorithm (Baum-Welch)
-[Mu,Cov,A,Pi]=BaumWelch(data,S);
+if Example==1 || Example==2
 
-% Plot the pdfs on the histogram (only for 1D input)
-if size(data,2)==1
-    [~,indMu]=sort(Mu(:,1));
-    Mu=Mu(indMu,:);
-    Cov=Cov(:,:,indMu);
-    A=A(indMu,:);
-    Pi=Pi(:,indMu);
-    
-    for i=1:S
-        pd{i} = makedist('Normal',Mu(i),Cov(:,:,i));
-        hold on
-        plot(linspace(min(data),max(data),10000),pdf(pd{i},linspace(min(data),max(data),10000)))
-        dist=pdf(pd{i},linspace(min(data),max(data),1000));
-        pctval = prctile(dist,95);
+    % Calculate mean, covariance, tranistion matrix and prior using the forward
+    % backward algorithm (Baum-Welch)
+    [Mu,Cov,A,Pi]=BaumWelch(data,S);
+
+    % Plot the pdfs on the histogram (only for 1D input)
+    if size(data,2)==1
+        [~,indMu]=sort(Mu(:,1));
+        Mu=Mu(indMu,:);
+        Cov=Cov(:,:,indMu);
+        A=A(indMu,:);
+        Pi=Pi(:,indMu);
+
+        for i=1:S
+            pd{i} = makedist('Normal',Mu(i),Cov(:,:,i));
+            hold on
+            plot(linspace(min(data),max(data),10000),pdf(pd{i},linspace(min(data),max(data),10000)))
+            dist=pdf(pd{i},linspace(min(data),max(data),1000));
+            pctval = prctile(dist,95);
+        end
     end
-end
 
-% Find the hidden states at each observation and the probabilities of each
-% state
-[max_ind,delta,prb]=viterbi_alg(data,Mu,Cov,Pi,A);
+    % Find the hidden states at each observation and the probabilities of each
+    % state
+    [max_ind,delta,prb]=viterbi_alg(data,Mu,Cov,Pi,A);
 
-% Plot the state transitions
-plot_state_probabilities(prb,time,data,max_ind,S)
-
-set(gcf,'color','w');
-
-
-
-
-
-
-
-
-
+    % Plot the state transitions
+    plot_state_probabilities(prb,time,data,max_ind,S)
+    
+elseif Example==3
+    % Time Varying Transition Probability Baum-Welch
+    [Mu,Cov,A,Pi,x]=TVTP_HMM(data,time,S,C);
+    
+    % TVTP Viterbi
+    [max_ind,~,delta2,vit_prb]=TVviterbi_alg(data,Mu,Cov,Pi,A);
+    plot_state_probabilities(vit_prb,time,data,max_ind)
+    
+    % Plot the state transitions
+    [vit_time_profile,vit_av_profile]=average_profile(time,vit_prb');
+    plot_state_probabilitiesV2(vit_av_profile',vit_time_profile)
+    
+    for s=1:S
+        M(s,:) = movmean(vit_prb(s,:),[5 5]);
+    end
+    for t=1:size(M,2)
+        M=M./sum(M(:,t));
+    end
+    figure
+    plot_state_probabilities(M,time,data,max_ind)
+    [vit_time_profile2,vit_av_profile2]=average_profile(time,M');
+    plot_state_probabilitiesV2(vit_av_profile2',vit_time_profile2)
+    
+    
+    Pr(1,:)=Pi;
+    for t=2:length(time)
+        for i=1:S
+            Pr(t,i)=sum(A(:,i,t).*Pr(t-1,:)');
+        end
+    end
+    
+    [time_profile,av_profile]=average_profile(time,Pr);
+    plot_state_probabilitiesV2(av_profile',time_profile)
