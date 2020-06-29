@@ -125,3 +125,4 @@ elseif Example==3
     
     [time_profile,av_profile]=average_profile(time,Pr);
     plot_state_probabilitiesV2(av_profile',time_profile)
+end
