@@ -12,8 +12,6 @@ Xi=permute(Xi,[2 3 1]);
 %     tempT(t)=squeeze(sum(sum(Xi(:,:,t).*log(exp(x(:,:,1)+x(:,:,2)*Z(t))./sum(exp(x(:,:,1)+x(:,:,2).*Z(t)),2)),2),1));
 % end
 % f=1/sum(tempT);
-    
-Xi=permute(Xi,[2 3 1]);
 
 c=0;
 for t=1:T-1
