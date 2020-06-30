@@ -57,9 +57,9 @@ Three state HMM with three orthogonal acceleration observations. Probability of 
 
 Two time varying series are used as covariates. A sine wave and cosine wave with 24 hour period to ensure no repeating coviarate values for each 24 hour period.
 
-![Total acceleration data and transformed data with viterbi (log differences)](/images/Time Varying Data.png)
+![Total acceleration data and transformed data with viterbi (log differences)](/images/TimeVaryingData.png)
 Total acceleration data and transformed data (log differences) with viterbi sequence.
 
-![Probability of states and average weekly profile](/images/Time Varying States.png)
+![Probability of states and average weekly profile](/images/TimeVaryingStates.png)
 Probability of the inactive and active states at each time point, with the average weekly profile below.
 
