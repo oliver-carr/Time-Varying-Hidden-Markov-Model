@@ -12,7 +12,7 @@ if nargin<4   cyc=100; end
 if nargin<3   N=2; end
 
 % Set the initial covariate
-Z=sin([time(1)-median(diff(time));time]*2*pi);
+Z=[cos([(time(1)-median(diff(time)));time]*2*pi),sin([(time(1)-median(diff(time)));time]*2*pi)];
 
 % Find the initial means and covariance matrices for each of the states
 % Split the observations into evenly size states from smallest to largest
@@ -157,22 +157,3 @@ for cycle=1:cyc
     
     
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
