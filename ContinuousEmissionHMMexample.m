@@ -94,7 +94,7 @@ if Example==1 || Example==2
     
 elseif Example==3
     % Time Varying Transition Probability Baum-Welch
-    [Mu,Cov,A,Pi,x]=TVTP_HMM(data,time,S,C);
+    [Mu,Cov,A,Pi,x]=TVTP_HMM(data,time,S,10);
     
     % TVTP Viterbi
     [max_ind,~,delta2,vit_prb]=TVviterbi_alg(data,Mu,Cov,Pi,A);
