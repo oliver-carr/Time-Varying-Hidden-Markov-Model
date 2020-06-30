@@ -27,6 +27,7 @@ elseif Example==3
     time=Acc_Time(2:end);
     data=log(abs(diff(Total_Acc)));
     S=2; %Number of hidden states
+    C=5; %Number of cycles to run (can get stuck in local minima)
     
 end
 
@@ -94,7 +95,7 @@ if Example==1 || Example==2
     
 elseif Example==3
     % Time Varying Transition Probability Baum-Welch
-    [Mu,Cov,A,Pi,x]=TVTP_HMM(data,time,S,10);
+    [Mu,Cov,A,Pi,x]=TVTP_HMM(data,time,S,C);
     
     % TVTP Viterbi
     [max_ind,~,delta2,vit_prb]=TVviterbi_alg(data,Mu,Cov,Pi,A);
@@ -103,19 +104,7 @@ elseif Example==3
     % Plot the state transitions
     [vit_time_profile,vit_av_profile]=average_profile(time,vit_prb');
     plot_state_probabilitiesV2(vit_av_profile',vit_time_profile)
-    
-    for s=1:S
-        M(s,:) = movmean(vit_prb(s,:),[5 5]);
-    end
-    for t=1:size(M,2)
-        M=M./sum(M(:,t));
-    end
-    figure
-    plot_state_probabilities(M,time,data,max_ind, S)
-    [vit_time_profile2,vit_av_profile2]=average_profile(time,M');
-    plot_state_probabilitiesV2(vit_av_profile2',vit_time_profile2)
-    
-    
+        
     Pr(1,:)=Pi;
     for t=2:length(time)
         for i=1:S
