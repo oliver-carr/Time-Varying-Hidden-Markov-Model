@@ -2,9 +2,9 @@
 
 Matlab implementation of standard hidden Markov models (HMMs) with continuous emissions, and dependent HMMs which allow the parameters to vary with time. The time varying hidden Markov model has been developed from the work of [Huang et al.](https://royalsocietypublishing.org/doi/full/10.1098/rsif.2017.0885) and applied in [Monitoring Depression in Bipolar Disorder using Circadian Measures from Smartphone Accelerometers](https://scholar.google.co.uk/citations?user=dpFEilMAAAAJ&hl=en).
 
-When using this code please cite:
-[1] O. Carr, F. Andreotti, K. E. A. Saunders, N. Palmius, G. M. Goodwin, M. De Vos, “Monitoring Depression in Bipolar Disorder using Circadian Measures from Smartphone Accelerometers”.
-[2] Q. Huang, D. Cohen, S. Komarzynski, X. M. Li, P. Innominato, F. Lévi, and B. Finkenstädt, “Hidden Markov models for monitoring circadian rhythmicity in telemetric activity data,” J. R. Soc. Interface, vol. 15, no. 139, 2018.
+When using this code please cite:  
+[1] O. Carr, F. Andreotti, K. E. A. Saunders, N. Palmius, G. M. Goodwin, M. De Vos, “Monitoring Depression in Bipolar Disorder using Circadian Measures from Smartphone Accelerometers”.  
+[2] Q. Huang, D. Cohen, S. Komarzynski, X. M. Li, P. Innominato, F. Lévi, and B. Finkenstädt, “Hidden Markov models for monitoring circadian rhythmicity in telemetric activity data,” J. R. Soc. Interface, vol. 15, no. 139, 2018.  
 
 ### Functions
 * Baum-Welch algorithm - function to determine HMM parameters from unsupervised set of observations.
